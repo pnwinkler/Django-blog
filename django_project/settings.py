@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,6 +123,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# where our uploaded files will be located
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# how we will access those images in our browser
+MEDIA_URL = '/media/'
 
 # by default crispy uses an older bootstrap
 # crispy template uses bootstrap 4 to style our templates using CSS
