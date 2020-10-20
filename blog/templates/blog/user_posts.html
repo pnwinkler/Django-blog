@@ -1,6 +1,7 @@
-<!--Part of this HTML is copy-pasted. Credit to Corey Schafer.-->
 {% extends "blog/base.html" %}
 {% block content %}
+    <h1 class="mb-3">{{ page_obj.paginator.count }} Post{{ page_obj.paginator.count|pluralize }} by {{ view.kwargs.username }}</h1>
+
     {% for post in posts %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
