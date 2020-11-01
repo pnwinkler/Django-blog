@@ -29,6 +29,14 @@ class PostListView(ListView):
     paginate_by = 5
 
 
+# get only X latest posts
+class LatestPostsView(PostListView):
+    template_name = 'blog/home.html'
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-date_posted')[:3]
+
+
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'
