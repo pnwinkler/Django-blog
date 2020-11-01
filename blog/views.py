@@ -18,7 +18,7 @@ def home(request):
     return render(request, 'blog/home.html', context)
 
 
-class PostListview(ListView):
+class PostListView(ListView):
     model = Post
     # <app>/<model>_<viewtype>.html
     template_name = 'blog/home.html'
@@ -26,21 +26,21 @@ class PostListview(ListView):
     context_object_name = 'posts'
     # "-" sign to list posts from newest to oldest instead of old -> new.
     ordering = ['-date_posted']
-    paginate_by = 3
+    paginate_by = 5
 
 
-class UserPostListview(ListView):
+class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'
     context_object_name = 'posts'
-    paginate_by = 3
+    paginate_by = 5
 
     # username var will be passed into URL. Override func
     def get_queryset(self):
         # this line is why we need "from django.contrib.auth.models import User"
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         # we're overriding the function responsible for ordering, so we remove "ordering" var from above
-        return Post.objects.filter(author=user).order_by('date_posted')
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 
 class PostDetailView(DetailView):

@@ -3,6 +3,11 @@
 {% block content %}
     {% for post in posts %}
         <article class="media content-section">
+<!--            to make profile image clickable, (replaces the line below)-->
+<!--            <a href="#">-->
+<!--                <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ image.name }}">-->
+<!--            </a>-->
+
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
                 <div class="article-metadata">
