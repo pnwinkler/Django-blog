@@ -1,3 +1,4 @@
+import feedparser
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
@@ -98,3 +99,10 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
+
+
+def announcements(request):
+    feed_items = feedparser.parse('https://github.com/pnwinkler/Django-blog/commits/main.atom')
+    context = {'feed_items': feed_items}
+    template_name = 'blog/announcements.html'
+    return render(request, template_name, context)
