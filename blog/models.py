@@ -13,6 +13,9 @@ class Post(models.Model):
     # one-to-many relationship. And, if a user is deleted, delete post too
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    # this means that querysets return something like this
+    # <QuerySet [<Post: First post on live site>, <Post: Blog 3 Updated>, ...]>
+    # instead of this: <QuerySet [<Post:>,<Post:>,<Post:>....]
     def __str__(self):
         return self.title
 

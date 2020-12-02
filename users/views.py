@@ -19,7 +19,7 @@ def register(request):
         form = UserRegisterForm()
     # if the user's already entered data (and their form was rejected),
     # this return statement will return that same form + error messages
-    return render(request, 'users/register.html', {'form': form})
+    return render(request=request, template_name='users/register.html', context={'form': form})
 
 
 @login_required
